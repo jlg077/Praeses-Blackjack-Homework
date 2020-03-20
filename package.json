@@ -1,0 +1,19 @@
+{
+  "name": "blackjack",
+  "version": "1.0.0",
+  "description": "A javascript program that can play blackjack!!!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlg077/Praeses-Blackjack-Homework.git"
+  },
+  "author": "Justin Garrett",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlg077/Praeses-Blackjack-Homework/issues"
+  },
+  "homepage": "https://github.com/jlg077/Praeses-Blackjack-Homework#readme"
+}
