@@ -11,22 +11,22 @@ function buildDeck()
     {
         for (var j = 0; j < Suits.length; j++)
         {
-            var blackjackNumber = parseInt(cardValue[i]);
+            var blackjackNumber = parseInt(cardValue[i]);//parses the list with card values and returns a specified radix integer
             var blackjackNumber2 = parseInt(cardValue[i]);
             if (cardValue[i] == "J" || cardValue[i] == "Q" || cardValue[i] == "K")
                 blackjackNumber = 10;
-            if (cardValue[i] == "A")
+            if (cardValue[i] == "A")//this was my attempt to split the value of an Ace, as it can be an 11 or a 1
                 blackjackNumber = 11;
                 blackjackNumber2 = 1;
             var Card = {Value: cardValue[i], Suits: Suits[j], blackjackNumber: blackjackNumber};
-            Deck.push(Card);
+            Deck.push(Card);//gives the card a suit and value and then pushes it into the deck
         }
     } 
 }
 
 function shuffle()
 {
-    //the way this will work is by switching two random cards
+    //the way this will work is by switching two random cards, 300 times
     for (var i = 0; i < 300; i++)
     {
         var card1 = Math.floor((Math.random() * Deck.length));
@@ -44,11 +44,11 @@ function Players(num)
     {
         var hand = new Array();
         var player = {Name: 'Player' + i, ID: i, Points: 0, Hand: hand};
-        players.push(player); 
+        players.push(player);  //creates players, giving them a number, how many points they have currently, and their hand of cards
     }
 }
 
-function PlayerUI()
+function PlayerUI()//Ideally, this would be used to create a UI for the game to make it visually appealing
         {
             document.getElementById('Players').innerHTML = '';
             for(var i = 0; i < players.length; i++)
@@ -81,7 +81,7 @@ function Deal()
             var card = Deck.pop();
             players[x].Hand.push(card);
             renderCard(card, x);
-            increasePoints();
+            increasePoints();//deals the cards, increasePoints gives the player the current value of their hand
         }
     }
     updateDeck();
@@ -90,7 +90,7 @@ function Deal()
 function renderCard(card, player)
         {
             var hand = document.getElementById('hand_' + player);
-            hand.appendChild(getCardUI(card));
+            hand.appendChild(getCardUI(card));//this would have been used to render cards for the UI
         }
 
         function getCardUI(card)
@@ -120,7 +120,7 @@ function renderCard(card, player)
                 points += players[player].Hand[i].Weight;
             }
             players[player].Points = points;
-            return points;
+            return points;//iterates through the length of the players' hand of cards and returns the points which is equal to the weight of the cards
         }
 
         function increasePoints()
@@ -132,7 +132,7 @@ function renderCard(card, player)
             }
         }
 
-function Hit()
+function Hit()//Gives the player the card at the top of the deck
 {
     var card = Deck.pop();
     players[currentPlayer].Hand.push(card);
@@ -140,7 +140,7 @@ function Hit()
     check();
 }
 
-function check()
+function check()//Checks a players' current points, if over 21 they lose
 {
     if (players[currentPlayer].Points > 21)
     {
@@ -148,7 +148,7 @@ function check()
     }
 }
 
-function Stay()
+function Stay()//The current player opts out of getting a new card and the dealer moves to the next player
 {
     if (currentPlayer != players.length-1)
     {
@@ -163,7 +163,7 @@ function Stay()
     }
 }
 
-function end()
+function end()//ends the game and tallies up the points, highest score wins. In a draw the dealer wins
 {
     var winner = -1;
     var score = 0;
@@ -182,7 +182,7 @@ function end()
 
 }
 
-function startGame()
+function startGame()//This would have initialized the game, GUI and all
 {
     document.getElementById('btnStart').value = 'Restart';
     document.getElementById("status").style.display = "none";
@@ -196,7 +196,7 @@ function startGame()
 
 }
 
-function updateDeck()
+function updateDeck()//updates the deck when a card is pulled from it
 {
     document.getElementById('deckcount').innerHTML = deck.length;
 }
